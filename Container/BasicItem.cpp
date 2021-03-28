@@ -17,6 +17,15 @@ namespace codesmith {
 			setName(name);
 		}
 
+		BasicItem::BasicItem(const BasicItem& other) {
+			*this = other;
+		}
+
+		BasicItem& BasicItem::operator=(const BasicItem& other)
+		{
+			return *this;
+		}
+
 		void BasicItem::setWeight(unsigned int w)
 		{
 			iWeight = w;

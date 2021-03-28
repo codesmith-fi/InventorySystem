@@ -24,12 +24,18 @@ namespace codesmith {
 			BasicItem(const std::string& name) : BasicItem(name, 0) { };
 			BasicItem(const std::string& name, unsigned int weight) : BasicItem(name, weight, 0) { };
 			BasicItem(const std::string& name, unsigned int weight, unsigned int value);
+
+			BasicItem(const BasicItem& other);
+			BasicItem& operator=(const BasicItem& other);
+
+
 		public: // From base class
 			unsigned int weight() const;
-			unsigned int value() const;
-			void setValue(unsigned int value);
+
 		public: // New methods
 			void setWeight(unsigned int w);
+			unsigned int value() const;
+			void setValue(unsigned int value);
 
 		private: // Data
 			unsigned int iWeight;
