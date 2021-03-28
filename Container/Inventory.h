@@ -27,7 +27,7 @@ namespace codesmith
 		{
 		public: // Constructors
 			Inventory() : Inventory(1) { };
-			Inventory(int bagLimit) : iBagLimit(bagLimit) { };
+			Inventory(int bagLimit) : iBagLimit(bagLimit), iWeightLimit(-1) { };
 			virtual ~Inventory() { };
 			// Disabled copy and assignment (C++11)
 			Inventory(const Inventory& other) = delete;
@@ -45,7 +45,22 @@ namespace codesmith
 			 */
 			size_t bagCount() const;
 
+			/**
+			 * @return How many items can be added to this inventory/
+			 */
 			size_t maxBagLimit() const;
+
+			/**
+			 * @return Weight of the whole inventory
+			 */
+			unsigned int weight() const;
+
+			/**
+			 * Get the weight limit for this inventory
+			 * negative for no inventory specific weight limit (handled outside for example)
+			 * @return The weight limit in this inventory
+			 */
+			int maxWeightLimit() const;
 
 			/**
 			 * @return The number of items held in this Inventory 
@@ -65,6 +80,7 @@ namespace codesmith
 		private: // Data
 			std::list<std::shared_ptr<Bag>> iBags;
 			size_t iBagLimit;
+			int iWeightLimit;
 		};
 	} // namespace Container
 } // namespace codesmith

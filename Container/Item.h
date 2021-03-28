@@ -38,8 +38,9 @@ namespace codesmith
 			const std::string name() const;
 			void setName(const std::string& name);
 
-		protected: // Public virtual interface to be implemented by concrete classes
+		public: // Public virtual interface to be implemented by concrete classes
 			virtual unsigned int weight() const = 0;
+
 		private: // Data
 			std::string iName;
 		};

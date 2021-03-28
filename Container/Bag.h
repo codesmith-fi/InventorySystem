@@ -49,12 +49,17 @@ namespace codesmith
 			/**
 			 * @return The the maximum size of the bag
 			 */
-			size_t size();
+			unsigned int size() const;
 
 			/**
 			 * @return The number of items held in this bag
 			 */
-			int count();
+			unsigned int count() const;
+
+			/**
+			 * @return The weight of this bag
+			 */
+			unsigned int weight() const;
 
 			/**
 			 * @return Name of the bag

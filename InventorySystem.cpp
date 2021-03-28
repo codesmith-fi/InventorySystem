@@ -47,6 +47,7 @@ int main(int argc, char** argv)
     i1->setValue(1000);
     std::shared_ptr<BasicItem> i2(new BasicItem("Shield of Overburdening"));
     i2->setValue(100);
+    i2->setWeight(321);
     std::shared_ptr<BasicItem> i3(new BasicItem("Shining Ring of Divorcement"));
     i3->setValue(12345);
     std::shared_ptr<BasicItem> i4(new BasicItem("Unbelievable crap"));
@@ -59,9 +60,11 @@ int main(int argc, char** argv)
     b2->addItem(i4);
 
     LOG_INFO() << "Now there are " << inv.bagCount() << " bags in the inventory";
+    LOG_INFO() << "Total weight of the inventory is " << inv.weight();
     LOG_INFO() << "Maximum number of items allowed in is " << inv.maxItemLimit();
     for (auto bag : inv) {
-        LOG_INFO() << "Bag name \"" << bag->name() << "\", size limit=" << bag->size();
+        LOG_INFO() << "Bag name \"" << bag->name() << "\", item limit=" << bag->size() <<
+            " current weight is " << bag->weight();
         for (auto item : *bag) {
             BasicItem* bi = dynamic_cast<BasicItem*>(item.get());
             if(bi) {

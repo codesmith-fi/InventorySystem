@@ -46,6 +46,20 @@ namespace codesmith
 			return iBagLimit;
 		}
 
+		int Inventory::maxWeightLimit() const
+		{
+			return iWeightLimit;
+		}
+
+		unsigned int Inventory::weight() const
+		{
+			int w = 0;
+			for (auto bag : iBags) {
+				w += bag->weight();
+			}
+			return w;
+		}
+
 		size_t Inventory::maxItemLimit() const
 		{
 			int c = 0;
