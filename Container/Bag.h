@@ -15,12 +15,16 @@
 #include <list>
 #include <memory>
 #include <string>
+#include <iterator>
 #include "Item.h"
 
 namespace codesmith
 {
 	namespace Container
 	{
+		typedef std::list<std::shared_ptr<Item>>::iterator item_iterator;
+		typedef std::list<std::shared_ptr<Item>>::const_iterator const_item_iterator;
+
 		class Bag
 		{
 		public: // Constants
@@ -34,6 +38,13 @@ namespace codesmith
 			// Disabled copy and assignment (C++11)
 			Bag(const Bag& other) = delete;
 			Bag& operator=(const Bag& other) = delete;
+
+		public: // STL iterator support
+			item_iterator begin() { return iItems.begin(); }
+			item_iterator end() { return iItems.end(); }
+			const_item_iterator cbegin() const { return iItems.cbegin(); }
+			const_item_iterator cend() const { return iItems.cend(); }
+
 		public: // Public methods
 			/**
 			 * @return The the maximum size of the bag

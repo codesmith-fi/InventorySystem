@@ -43,8 +43,12 @@ int main(int argc, char** argv)
 
     LOG_INFO() << "Now there are " << inv.bagCount() << " bags in the inventory";
     LOG_INFO() << "Maximum number of items allowed in is " << inv.maxItemLimit();
+    for (auto bag : inv) {
+        LOG_INFO() << "Bag name \"" << bag->name() << "\", size limit=" << bag->size();
+        for (auto item : *bag) {
+            LOG_INFO() << " -> Item \"" << item->name() << "\"";
+        }
+    }
 
     return 0;
 }
-
-

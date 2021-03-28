@@ -13,12 +13,16 @@
 
 #include <list>
 #include <memory>
+#include <iterator>
 #include "Bag.h"
 
 namespace codesmith
 {
 	namespace Container
 	{
+		typedef std::list<std::shared_ptr<Bag>>::iterator bag_iterator;
+		typedef std::list<std::shared_ptr<Bag>>::const_iterator const_bag_iterator;
+
 		class Inventory
 		{
 		public: // Constructors
@@ -28,6 +32,12 @@ namespace codesmith
 			// Disabled copy and assignment (C++11)
 			Inventory(const Inventory& other) = delete;
 			Inventory& operator=(const Inventory& other) = delete;
+
+		public: // STL iterator support
+			bag_iterator begin() { return iBags.begin(); }
+			bag_iterator end() { return iBags.end(); }
+			const_bag_iterator cbegin() const { return iBags.cbegin(); }
+			const_bag_iterator cend() const { return iBags.cend(); }
 
 		public: // Public methods
 			/**
