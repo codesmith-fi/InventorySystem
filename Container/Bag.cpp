@@ -35,11 +35,12 @@ namespace codesmith {
 			if (iItems.size() < iItemLimit) {
 				for (auto item : iItems) {
 					if (item == newItem) {
-						LOG_INFO() << "Item \"" << item->name() << "\" already exists in the inventory";
+						LOG_WARN() << " -> Item \"" << newItem->name() << "\" already exists in the inventory";
 						return false;
 					}
 				}
 				iItems.push_back(newItem);
+				LOG_INFO() << " -> New item added to bag \"" << name() << "\" : " << newItem->name();
 				return true;
 			}
 			else {
