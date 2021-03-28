@@ -12,6 +12,8 @@
 #define __ITEM_H_DEFINED__
 
 #include <string>
+#include <list>
+#include <memory>
 
 namespace codesmith
 {
@@ -44,6 +46,12 @@ namespace codesmith
 		private: // Data
 			std::string iName;
 		};
+
+		typedef std::list<std::shared_ptr<Item>>::iterator item_iterator;
+		typedef std::list<std::shared_ptr<Item>>::const_iterator const_item_iterator;
+		typedef std::list<std::shared_ptr<Item>> TItemList;
+		typedef std::shared_ptr<TItemList> TItemListPointer;
+		typedef std::shared_ptr<Item> TItemPointer;
 	} // namespace Container
 } // namespace codesmith
 

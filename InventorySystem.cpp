@@ -81,12 +81,13 @@ int main(int argc, char** argv)
     }
     std::cout << std::endl;
     LOG_INFO() << "Trying to find a \"Shield\"";
-    TItemListPointer findResults(inv.findItem("Shield"));
+//    TItemListPointer findResults(inv.findItem("Shield"));
+    TFindResultsPointer findResults(inv.findItemWithBag("Shield"));
     if (findResults->size() > 0) {
         LOG_INFO() << "Found " << findResults->size() << " matches";
         int ic = 1;
         for (auto i : *findResults) {
-            LOG_INFO() << " result " << ic << " -> " << i->name();
+            LOG_INFO() << " Result " << ic << " -> " << i.second->name() << " in bag \"" << i.first->name() << "\"";
             ic++;
         }
     }

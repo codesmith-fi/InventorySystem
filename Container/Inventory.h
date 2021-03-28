@@ -12,6 +12,7 @@
 #define __INVENTORY_H_DEFINED__
 
 #include <list>
+#include <map>
 #include <memory>
 #include <iterator>
 #include "Bag.h"
@@ -22,6 +23,13 @@ namespace codesmith
 	{
 		typedef std::list<std::shared_ptr<Bag>>::iterator bag_iterator;
 		typedef std::list<std::shared_ptr<Bag>>::const_iterator const_bag_iterator;
+		typedef std::map<TBagPointer, TItemPointer> TFindResults;
+		typedef std::shared_ptr<TFindResults> TFindResultsPointer;
+
+		/**
+		* bag
+		* item
+		*/
 
 		class Inventory
 		{
@@ -81,7 +89,9 @@ namespace codesmith
 			 * Search for item by partial name, all bags are searched
 			 * @param partial a item name (part or full) to be searched for
 			 */
-			TItemListPointer findItem(const std::string& partial);
+			TItemListPointer findItem(const std::string& partial) const;
+
+			TFindResultsPointer findItemWithBag(const std::string& partial) const;
 
 		private: // Data
 			std::list<std::shared_ptr<Bag>> iBags;

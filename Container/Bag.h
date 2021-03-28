@@ -22,11 +22,6 @@ namespace codesmith
 {
 	namespace Container
 	{
-		typedef std::list<std::shared_ptr<Item>>::iterator item_iterator;
-		typedef std::list<std::shared_ptr<Item>>::const_iterator const_item_iterator;
-		typedef std::list<std::shared_ptr<Item>> TItemList;
-		typedef std::shared_ptr<TItemList> TItemListPointer;
-
 		class Bag
 		{
 		public: // Constants
@@ -84,6 +79,9 @@ namespace codesmith
 			std::string iName;
 			size_t iItemLimit;
 		};
+
+		typedef std::shared_ptr<Bag> TBagPointer;
+
 	} // namespace Container
 } // namespace codesmith
 

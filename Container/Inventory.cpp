@@ -69,7 +69,7 @@ namespace codesmith
 			return c;
 		}
 
-		TItemListPointer Inventory::findItem(const std::string& partial)
+		TItemListPointer Inventory::findItem(const std::string& partial) const
 		{
 			TItemListPointer results(new TItemList);
 			for (auto bag : iBags) {
@@ -83,5 +83,18 @@ namespace codesmith
 			return results;
 		}
 
+		TFindResultsPointer Inventory::findItemWithBag(const std::string& partial) const
+		{
+			TFindResultsPointer results(new TFindResults);
+			for (auto bag : iBags) {
+				TItemListPointer bagRes(bag->findItem(partial));
+				if (bagRes->size() > 0) {
+					for (auto bagItem : *bagRes) {
+						results->insert(std::pair< TBagPointer, TItemPointer>(bag, bagItem));
+					}
+				}
+			}
+			return results;
+		}
 	}
 }
