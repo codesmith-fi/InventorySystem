@@ -23,8 +23,19 @@ namespace codesmith {
 			return *this;
 		}
 
+		bool Item::isContainer() const 
+		{ 
+			return false; 
+		}
+
 		const std::string Item::name() const {
 			return iName;
 		}
+
+		void Item::setName(const std::string& name)
+		{
+			iName = name;
+		}
+
 	}
 }

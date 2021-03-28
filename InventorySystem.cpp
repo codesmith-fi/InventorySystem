@@ -19,6 +19,7 @@
 #include <memory>
 #include "Container/Inventory.h"
 #include "Container/Bag.h"
+#include "Container/BasicItem.h"
 #include "util/DebugLogger.h"
 
 using namespace codesmith::Container;
@@ -41,12 +42,34 @@ int main(int argc, char** argv)
     inv.addBag(b1);
     inv.addBag(b2);
 
+    // Create few items
+    std::shared_ptr<BasicItem> i1(new BasicItem("Uber sword"));
+    i1->setValue(1000);
+    std::shared_ptr<BasicItem> i2(new BasicItem("Shield of Overburdening"));
+    i2->setValue(100);
+    std::shared_ptr<BasicItem> i3(new BasicItem("Shining Ring of Divorcement"));
+    i3->setValue(12345);
+    std::shared_ptr<BasicItem> i4(new BasicItem("Unbelievable crap"));
+    i4->setValue(10);
+    i4->setWeight(100000);
+
+    b1->addItem(i1);
+    b1->addItem(i2);
+    b1->addItem(i3);
+    b2->addItem(i4);
+
     LOG_INFO() << "Now there are " << inv.bagCount() << " bags in the inventory";
     LOG_INFO() << "Maximum number of items allowed in is " << inv.maxItemLimit();
     for (auto bag : inv) {
         LOG_INFO() << "Bag name \"" << bag->name() << "\", size limit=" << bag->size();
         for (auto item : *bag) {
-            LOG_INFO() << " -> Item \"" << item->name() << "\"";
+            BasicItem* bi = dynamic_cast<BasicItem*>(item.get());
+            if(bi) {
+                LOG_INFO() << " -> Basic item \"" << bi->name() << "\"" << " weights " << bi->weight() << " and valued at " << bi->value();
+            }
+            else {
+                LOG_INFO() << " -> ??? undefined item type: " << item->name();
+            }
         }
     }
 

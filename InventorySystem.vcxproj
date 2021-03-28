@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Container\BasicItem.cpp" />
     <ClCompile Include="Container\Bag.cpp" />
     <ClCompile Include="Container\Inventory.cpp" />
     <ClCompile Include="Container\Item.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="test\TestBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Container\BasicItem.h" />
     <ClInclude Include="Container\Bag.h" />
     <ClInclude Include="Container\Inventory.h" />
     <ClInclude Include="Container\Item.h" />
