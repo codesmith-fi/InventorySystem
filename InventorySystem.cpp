@@ -16,7 +16,9 @@
  * mailto: codesmith.fi@gmail.com
  */
 #include <iostream>
+#include <memory>
 #include "Container/Inventory.h"
+#include "Container/Bag.h"
 #include "util/DebugLogger.h"
 
 using namespace codesmith::Container;
@@ -25,9 +27,23 @@ int main(int argc, char** argv)
 {
     LOG_INFO() << "Here's an example use of the Inventory System";
 
-    Inventory inv;
-    LOG_INFO() << "Current number of bags in my inventory is " << inv.bagCount();
-    LOG_INFO() << "Total number of items in held is " << inv.itemCount();
+    Inventory inv(10);
+    LOG_INFO() << "Initial state:";
+    LOG_INFO() << "Current number of bags in the inventory is " << inv.bagCount();
+    LOG_INFO() << "Inventory can hold " << inv.maxBagLimit() << " bags";
+    LOG_INFO() << "Total number of items in the inventory is " << inv.itemCount();
+    LOG_INFO() << "";
+    LOG_INFO() << "Adding two new bags";
+
+    std::shared_ptr<Bag> b1(new Bag(20, "Bag 1"));
+    std::shared_ptr<Bag> b2(new Bag(10, "Bag 2"));
+
+    inv.addBag(b1);
+    inv.addBag(b2);
+
+    LOG_INFO() << "Now there are " << inv.bagCount() << " bags in the inventory";
+    LOG_INFO() << "Maximum number of items allowed in is " << inv.maxItemLimit();
+
     return 0;
 }
 
