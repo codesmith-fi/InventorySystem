@@ -33,7 +33,7 @@ int main(int argc, char** argv)
     LOG_INFO() << "Current number of bags in the inventory is " << inv.bagCount();
     LOG_INFO() << "Inventory can hold " << inv.maxBagLimit() << " bags";
     LOG_INFO() << "Total number of items in the inventory is " << inv.itemCount();
-    LOG_INFO() << "";
+    std::cout << std::endl;
     LOG_INFO() << "Adding two new bags";
 
     std::shared_ptr<Bag> b1(new Bag(20, "Bag 1"));
@@ -53,11 +53,15 @@ int main(int argc, char** argv)
     std::shared_ptr<BasicItem> i4(new BasicItem("Unbelievable crap"));
     i4->setValue(10);
     i4->setWeight(100000);
+    std::shared_ptr<BasicItem> i5(new BasicItem("Shield of instant suicide"));
+    i5->setValue(666);
+    i5->setWeight(9251);
 
     b1->addItem(i1);
     b1->addItem(i2);
     b1->addItem(i3);
     b2->addItem(i4);
+    b2->addItem(i5);
 
     LOG_INFO() << "Now there are " << inv.bagCount() << " bags in the inventory";
     LOG_INFO() << "Total weight of the inventory is " << inv.weight();
@@ -75,6 +79,16 @@ int main(int argc, char** argv)
             }
         }
     }
-
+    std::cout << std::endl;
+    LOG_INFO() << "Trying to find a \"Shield\"";
+    TItemListPointer findResults(inv.findItem("Shield"));
+    if (findResults->size() > 0) {
+        LOG_INFO() << "Found " << findResults->size() << " matches";
+        int ic = 1;
+        for (auto i : *findResults) {
+            LOG_INFO() << " result " << ic << " -> " << i->name();
+            ic++;
+        }
+    }
     return 0;
 }

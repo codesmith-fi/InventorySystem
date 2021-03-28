@@ -68,5 +68,20 @@ namespace codesmith
 			}
 			return c;
 		}
+
+		TItemListPointer Inventory::findItem(const std::string& partial)
+		{
+			TItemListPointer results(new TItemList);
+			for (auto bag : iBags) {
+				TItemListPointer bagRes(bag->findItem(partial));
+				if(bagRes->size() > 0 ) {
+					for (auto bagItem : *bagRes) {
+						results->push_back(bagItem);
+					}
+				}
+			}
+			return results;
+		}
+
 	}
 }

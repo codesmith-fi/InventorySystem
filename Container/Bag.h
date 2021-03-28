@@ -24,6 +24,8 @@ namespace codesmith
 	{
 		typedef std::list<std::shared_ptr<Item>>::iterator item_iterator;
 		typedef std::list<std::shared_ptr<Item>>::const_iterator const_item_iterator;
+		typedef std::list<std::shared_ptr<Item>> TItemList;
+		typedef std::shared_ptr<TItemList> TItemListPointer;
 
 		class Bag
 		{
@@ -71,8 +73,14 @@ namespace codesmith
 			 */
 			bool addItem(std::shared_ptr<Item> item);
 
+			/**
+			 * Search for item by partial name
+			 * @param partial a item name (part or full) to be searched for
+			 */
+			TItemListPointer findItem(const std::string& partial);
+
 		private: // Data
-			std::list<std::shared_ptr<Item>> iItems;
+			TItemList iItems;
 			std::string iName;
 			size_t iItemLimit;
 		};

@@ -47,5 +47,16 @@ namespace codesmith {
 				return false;
 			}
 		}
+
+		TItemListPointer Bag::findItem(const std::string& partial)
+		{
+			TItemListPointer results(new TItemList);
+			for (auto item : iItems) {
+				if (item->name().find(partial) != std::string::npos) {
+					results->push_back(item);
+				}
+			}
+			return results;
+		}
 	}
 }

@@ -77,6 +77,12 @@ namespace codesmith
 			 */
 			bool addBag(const std::shared_ptr<Bag> bag);
 
+			/**
+			 * Search for item by partial name, all bags are searched
+			 * @param partial a item name (part or full) to be searched for
+			 */
+			TItemListPointer findItem(const std::string& partial);
+
 		private: // Data
 			std::list<std::shared_ptr<Bag>> iBags;
 			size_t iBagLimit;
