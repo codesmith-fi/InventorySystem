@@ -144,6 +144,8 @@
     <ClCompile Include="Container\Inventory.cpp" />
     <ClCompile Include="Container\Item.cpp" />
     <ClCompile Include="InventorySystem.cpp" />
+    <ClCompile Include="primitives\Rectangle.cpp" />
+    <ClCompile Include="primitives\Vector.cpp" />
     <ClCompile Include="test\TestBase.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +153,8 @@
     <ClInclude Include="Container\Bag.h" />
     <ClInclude Include="Container\Inventory.h" />
     <ClInclude Include="Container\Item.h" />
+    <ClInclude Include="primitives\Rectangle.h" />
+    <ClInclude Include="primitives\Vector.h" />
     <ClInclude Include="test\TestBase.h" />
     <ClInclude Include="util\DebugLogger.h" />
   </ItemGroup>
