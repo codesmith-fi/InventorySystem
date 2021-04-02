@@ -19,10 +19,14 @@ namespace codesmith {
 
 		class BasicItem : public Item
 		{
+		public: // Static data
+			static const int KItemTypeUndefined;
 		public: // constructors
 			BasicItem() : BasicItem(KDefaultItemName) { };
-			BasicItem(const std::string& name) : BasicItem(name, 0) { };
-			BasicItem(const std::string& name, unsigned int weight) : BasicItem(name, weight, 0) { };
+			BasicItem(const std::string& name) 
+				: BasicItem(name, 0) { };
+			BasicItem(const std::string& name, unsigned int weight) 
+				: BasicItem(name, weight, 0) { };
 			BasicItem(const std::string& name, unsigned int weight, unsigned int value);
 
 			BasicItem(const BasicItem& other);
@@ -33,6 +37,12 @@ namespace codesmith {
 			unsigned int weight() const;
 
 		public: // New methods
+			inline int type() const { 
+				return iType; 
+			};
+			inline void setType(unsigned int type) {
+				iType = type;
+			}
 			void setWeight(unsigned int w);
 			unsigned int value() const;
 			void setValue(unsigned int value);
@@ -40,6 +50,7 @@ namespace codesmith {
 		private: // Data
 			unsigned int iWeight;
 			unsigned int iValue;
+			unsigned int iType;
 		};
 
 	} // namespace Container

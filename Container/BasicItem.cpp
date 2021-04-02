@@ -12,7 +12,11 @@
 
 namespace codesmith {
 	namespace Container {
-		BasicItem::BasicItem(const std::string& name, unsigned int weight, unsigned int value) : iWeight(weight), iValue(value)
+		const int BasicItem::KItemTypeUndefined = 0;
+
+		BasicItem::BasicItem(const std::string& name, 
+			unsigned int weight, unsigned int value) : 
+			iWeight(weight), iValue(value), iType(KItemTypeUndefined)
 		{
 			setName(name);
 		}
@@ -23,6 +27,10 @@ namespace codesmith {
 
 		BasicItem& BasicItem::operator=(const BasicItem& other)
 		{
+			setName(other.name());
+			iType = other.iType;
+			iWeight = other.iWeight;
+			iValue = other.iValue;
 			return *this;
 		}
 
